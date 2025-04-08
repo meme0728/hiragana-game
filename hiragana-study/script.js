@@ -1,14 +1,3 @@
-// document.querySelectorAll('.hiragana-btn').forEach(button => {
-//     button.addEventListener('click', () => {
-//         const inputField = document.getElementById('inputField');
-//         inputField.value += button.textContent; // クリックされたひらがなを入力欄に追加
-//     });
-// });
-
-document.getElementById('clearBtn').addEventListener('click', () => {
-    const inputField = document.getElementById('inputField');
-    inputField.value = inputField.value.slice(0, -1); // 最後の1文字を削除
-});
 
 
 // 濁音ボタン
@@ -20,6 +9,14 @@ function addCharacter(char) {
     currentInput += char;
     document.getElementById('inputField').value = currentInput;
 }
+
+// 消去ボタンの機能（最後の1文字だけ消去）
+document.getElementById('clearBtn').addEventListener('click', function() {
+    if (currentInput.length > 0) {
+        currentInput = currentInput.slice(0, -1);  // 最後の1文字を削除
+        document.getElementById('inputField').value = currentInput; // 入力欄を更新
+    }
+});
 
 // 濁音に変換する関数
 function changeToDakuten() {
