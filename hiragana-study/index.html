@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ひらがな学習</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+
+        <div class="image">
+            <img src="./images/reizouko.png" alt="画像の説明" width="300" height="200">
+        </div>
+<!-- 
+        <div class="input-area">
+            <input type="text" id="inputField" disabled>
+            
+        </div> -->
+
+        <div class="input-space">
+            <input type="text" id="inputField" disabled placeholder="入力された文字が表示されます">
+            <div id="resultIndicator"></div> <!-- 正解を示す赤丸を表示する場所 -->
+        </div>
+
+        <div class="hiragana-buttons">
+            <button class="hiragana-btn" onclick="addCharacter('あ')">あ</button>
+            <button class="hiragana-btn" onclick="addCharacter('い')">い</button>
+            <button class="hiragana-btn" onclick="addCharacter('う')">う</button>
+            <button class="hiragana-btn" onclick="addCharacter('え')">え</button>
+            <button class="hiragana-btn" onclick="addCharacter('お')">お</button>
+            <button class="hiragana-btn" onclick="addCharacter('か')">か</button>
+            <button class="hiragana-btn" onclick="addCharacter('き')">き</button>
+            <button class="hiragana-btn" onclick="addCharacter('く')">く</button>
+            <button class="hiragana-btn" onclick="addCharacter('け')">け</button>
+            <button class="hiragana-btn" onclick="addCharacter('こ')">こ</button>
+            <button class="hiragana-btn" onclick="addCharacter('さ')">さ</button>
+            <button class="hiragana-btn" onclick="addCharacter('し')">し</button>
+            <button class="hiragana-btn" onclick="addCharacter('す')">す</button>
+            <button class="hiragana-btn" onclick="addCharacter('せ')">せ</button>
+            <button class="hiragana-btn" onclick="addCharacter('そ')">そ</button>
+            <button class="hiragana-btn" onclick="addCharacter('た')">た</button>
+            <button class="hiragana-btn" onclick="addCharacter('ち')">ち</button>
+            <button class="hiragana-btn" onclick="addCharacter('つ')">つ</button>
+            <button class="hiragana-btn" onclick="addCharacter('て')">て</button>
+            <button class="hiragana-btn" onclick="addCharacter('と')">と</button>
+            <button class="hiragana-btn" onclick="addCharacter('な')">な</button>
+            <button class="hiragana-btn" onclick="addCharacter('に')">に</button>
+            <button class="hiragana-btn" onclick="addCharacter('ぬ')">ぬ</button>
+            <button class="hiragana-btn" onclick="addCharacter('ね')">ね</button>
+            <button class="hiragana-btn" onclick="addCharacter('の')">の</button>
+            <button class="hiragana-btn" onclick="addCharacter('は')">は</button>
+            <button class="hiragana-btn" onclick="addCharacter('ひ')">ひ</button>
+            <button class="hiragana-btn" onclick="addCharacter('ふ')">ふ</button>
+            <button class="hiragana-btn" onclick="addCharacter('へ')">へ</button>
+            <button class="hiragana-btn" onclick="addCharacter('ほ')">ほ</button>
+            <button class="hiragana-btn" onclick="addCharacter('ま')">ま</button>
+            <button class="hiragana-btn" onclick="addCharacter('み')">み</button>
+            <button class="hiragana-btn" onclick="addCharacter('む')">む</button>
+            <button class="hiragana-btn" onclick="addCharacter('め')">め</button>
+            <button class="hiragana-btn" onclick="addCharacter('も')">も</button>
+            <button class="hiragana-btn" onclick="addCharacter('や')">や</button>
+            <button class="hiragana-btn" onclick="addCharacter('ゆ')">ゆ</button>
+            <button class="hiragana-btn" onclick="addCharacter('よ')">よ</button>
+            <button class="hiragana-btn" onclick="addCharacter('ら')">ら</button>
+            <button class="hiragana-btn" onclick="addCharacter('り')">り</button>
+            <button class="hiragana-btn" onclick="addCharacter('る')">る</button>
+            <button class="hiragana-btn" onclick="addCharacter('れ')">れ</button>
+            <button class="hiragana-btn" onclick="addCharacter('ろ')">ろ</button>
+            <button class="hiragana-btn" onclick="addCharacter('わ')">わ</button>
+            <button class="hiragana-btn" onclick="addCharacter('を')">を</button>
+            <button class="hiragana-btn" onclick="addCharacter('ん')">ん</button>
+            <button class="hiragana-btn" onclick="changeToDakuten()">〝</button>
+            <button class="hiragana-btn" onclick="changeToHandakuten()"> ⚪</button>
+        </div>
+
+        <!-- <div class="modification-buttons">
+            <button onclick="changeToDakuten()">濁音</button>
+            <button onclick="changeToHandakuten()">半濁音</button>
+        </div> -->
+
+        <div class="clear-button">
+            <button id="clearBtn">消去</button>
+            <button id="confirmBtn" onclick="confirmAnswer()">確定</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.input-space {
+    margin-bottom: 20px;
+}
+
+#inputField {
+    font-size: 1.5em;
+    padding: 10px;
+    width: 80%;
+    text-align: center;
+}
+
+.hiragana-buttons {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.hiragana-btn {
+    padding: 20px;
+    font-size: 1.5em;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.hiragana-btn:hover {
+    background-color: #f0f0f0;
+}
+
+.clear-button {
+    margin-top: 20px;
+}
+
+#clearBtn, #confirmBtn {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#clearBtn:hover {
+    background-color: #d32f2f;
+}
+
+#confirmBtn {
+    background-color: #4CAF50;  /* 緑色 */
+    color: white;
+    margin-left: 10px;  /* 「消去」ボタンとの間隔を空ける */
+}
+
+#confirmBtn:hover {
+    background-color: #45a049;  /* 緑色の濃い色 */
+}
+
+
+/* アニメーション */
+/* 赤丸のスタイル */
+#resultIndicator {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: red;
+    margin-top: 10px;
+    display: none; /* 初めは非表示 */
+}
+
+/* 入力文字列消去アニメーション
+@keyframes clearAnimation {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        width: 0;
+        padding: 0;
+    }
+}
+
+.clear-animation {
+    animation: clearAnimation 1s forwards;
+} */
+
+/* 入力文字列消去アニメーション */
+@keyframes clearAnimation {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        width: 0;
+        padding: 0;
+    }
+}
+
+.clear-animation {
+    animation: clearAnimation 1s forwards;
+}
+
+/* 画像のシェイクアニメーション */
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-10px);
+    }
+    50% {
+        transform: translateX(10px);
+    }
+    75% {
+        transform: translateX(-10px);
+    }
+    100% {
+        transform: translateX(10px);
+    }
+}
+
+.shake {
+    animation: shake 0.5s ease-in-out;
+}
