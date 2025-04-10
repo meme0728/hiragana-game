@@ -32,7 +32,9 @@ if(answeredImages.length === 0){
 
 // 次の画像に切り替える関数
 function showNextImage() {
+  console.log(`正解数：${answeredImages.length}`)
   const remainingImages = images.filter(img => !answeredImages.includes(img.src));
+  console.log(`残りの問題：${remainingImages.length}`)
 
   if (remainingImages.length === 0) {
     alert('全ての画像に正解しました！');
@@ -127,7 +129,6 @@ function confirmAnswer() {
         // 0.5秒後に次の画像に切り替え
         setTimeout(() => {
             resultIndicator.style.display = 'none'; // 赤丸を消す
-            currentImageIndex++;
             if (currentImageIndex < images.length) {
                 document.querySelector('.image img').src = images[currentImageIndex].src;
                 document.querySelector('.image img').alt = images[currentImageIndex].name;
@@ -155,5 +156,3 @@ function shakeImage() {
         imageElement.classList.remove('shake'); // アニメーション後にshakeクラスを削除
     }, 1500); // 1.5秒後にクラスを削除
 }
-
-
