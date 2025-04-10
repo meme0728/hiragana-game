@@ -27,9 +27,11 @@ body {
 
 .hiragana-buttons {
     display: grid;
-    grid-template-columns: repeat(10, 1fr);
+    grid-auto-flow: column;           /* 縦方向に並べる */
+    grid-template-rows: repeat(5, 1fr); /* 10行に分ける */
     gap: 10px;
     margin-bottom: 20px;
+    direction: rtl; /* ← ここで右から左にする！ */
 }
 
 .hiragana-btn {
@@ -76,33 +78,35 @@ body {
 }
 
 
-/* アニメーション */
+.image {
+    position: relative;
+    margin: 0 auto;
+}
+
+.image img {
+    height: auto; /* ← これがアスペクト比を保つ */
+    max-width: 200px;
+    display: block;
+    object-fit: contain;
+}
+
+
 /* 赤丸のスタイル */
 #resultIndicator {
-    width: 20px;
-    height: 20px;
+    position: absolute;
+    top: 10;
+    left: center;
+    width: 20%; /* 画像と同じサイズに */
+    height: 20%;
+    border: 30px solid rgba(255, 0, 0, 0.8);
     border-radius: 50%;
-    background-color: red;
-    margin-top: 10px;
-    display: none; /* 初めは非表示 */
+    box-sizing: border-box;
+    pointer-events: none; /* ボタン操作を邪魔しないように */
+    display: none; /* 最初は非表示 */
+    background-color: transparent;
 }
 
-/* 入力文字列消去アニメーション
-@keyframes clearAnimation {
-    0% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-        width: 0;
-        padding: 0;
-    }
-}
-
-.clear-animation {
-    animation: clearAnimation 1s forwards;
-} */
-
+/* アニメーション */
 /* 入力文字列消去アニメーション */
 @keyframes clearAnimation {
     0% {
@@ -140,4 +144,20 @@ body {
 
 .shake {
     animation: shake 0.5s ease-in-out;
+}
+
+
+/* カウンター */
+
+#counter-area {
+    position: fixed;
+    top: 50px;
+    right: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    z-index: 1000;
 }
