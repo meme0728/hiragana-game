@@ -77,6 +77,20 @@ body {
     background-color: #45a049;  /* 緑色の濃い色 */
 }
 
+#skipBtn {
+    background-color: #FFD700;  /* ゴールド系の黄色 */
+    color: white;
+    border-radius: 0.5rem;
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    border: none;
+    cursor: pointer;
+}
+
+#skipBtn:hover {
+    background-color: #FFC107;  /* 濃いめの黄色 */
+}
 
 .image {
     position: relative;
@@ -94,18 +108,19 @@ body {
 /* 赤丸のスタイル */
 #resultIndicator {
     position: absolute;
-    top: 10;
-    left: center;
-    width: 20%; /* 画像と同じサイズに */
-    height: 20%;
-    border: 30px solid rgba(255, 0, 0, 0.8);
+    top: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 300px;
+    border: 20px solid rgba(255, 0, 0, 0.8);
     border-radius: 50%;
     box-sizing: border-box;
-    pointer-events: none; /* ボタン操作を邪魔しないように */
-    display: none; /* 最初は非表示 */
+    pointer-events: none;
+    display: none;
     background-color: transparent;
+    z-index: 10;
 }
-
 /* アニメーション */
 /* 入力文字列消去アニメーション */
 @keyframes clearAnimation {
@@ -160,4 +175,21 @@ body {
     border-radius: 8px;
     box-shadow: 0 0 5px rgba(0,0,0,0.2);
     z-index: 1000;
+}
+
+
+/* スタート画面 */
+.count-btn {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    margin: 10px;
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+.count-btn:hover {
+    background-color: #1976D2;
 }

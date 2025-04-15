@@ -7,7 +7,19 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
+    <div id="startScreen" class="container">
+        <h1>ひらがなゲーム</h1>
+        <p>もんだいのかずをえらんでください</p>
+        <div>
+            <button class="count-btn" onclick="startGame(3)">３問</button>
+            <button class="count-btn" onclick="startGame(5)">５問</button>
+            <button class="count-btn" onclick="startGame(10)">１０問</button>
+        </div>
+        <div id="resultMessage" style="margin-top: 20px; font-weight: bold; font-size: 20px"></div>
+    </div>
+
+    <!-- <div class="container"> -->
+    <div id="gameContainer" class="container" style="display: none;">
 
         <div class="image">
             <img src="./images/reizouko.png" alt="画像の説明" width="300" height="200">
@@ -77,6 +89,7 @@
         </div>
 
         <div class="clear-button">
+            <button id="skipBtn">スキップ</button> <!-- ← 追加！ -->
             <button id="clearBtn">消去</button>
             <button id="confirmBtn" onclick="confirmAnswer()">確定</button>
         </div>

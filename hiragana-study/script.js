@@ -53,12 +53,6 @@ function showNextImage() {
   currentImageIndex = index
 }
 
-// 初期画像を表示
-// document.querySelector('.image img').src = images[currentImageIndex].src;
-// document.querySelector('.image img').alt = images[currentImageIndex].name;
-
-
-
 //// 基本的な入出力
 // 文字を入力欄に追加する関数
 function addCharacter(char) {
@@ -108,45 +102,45 @@ function changeToHandakuten() {
 }
 
 
-// 正解の確認
-function confirmAnswer() {
-    const inputField = document.getElementById('inputField');
-    const resultIndicator = document.getElementById('resultIndicator');
+// // 正解の確認
+// function confirmAnswer() {
+//     const inputField = document.getElementById('inputField');
+//     const resultIndicator = document.getElementById('resultIndicator');
 
-    console.log(inputField.value)
+//     console.log(inputField.value)
     
-    if (inputField.value === images[currentImageIndex].name) {
-        // 正解数をカウント
-        correctCount++;
-        document.getElementById("correctCounter").textContent = correctCount;
+//     if (inputField.value === images[currentImageIndex].name) {
+//         // 正解数をカウント
+//         correctCount++;
+//         document.getElementById("correctCounter").textContent = correctCount;
 
-        // 正解済みとして記憶
-        answeredImages.push(currentImage.src);
+//         // 正解済みとして記憶
+//         answeredImages.push(currentImage.src);
 
-        const resultIndicator = document.getElementById('resultIndicator');
-        resultIndicator.style.display = 'block'; // 赤丸表示
+//         const resultIndicator = document.getElementById('resultIndicator');
+//         resultIndicator.style.display = 'block'; // 赤丸表示
     
-        // 0.5秒後に次の画像に切り替え
-        setTimeout(() => {
-            resultIndicator.style.display = 'none'; // 赤丸を消す
-            if (currentImageIndex < images.length) {
-                document.querySelector('.image img').src = images[currentImageIndex].src;
-                document.querySelector('.image img').alt = images[currentImageIndex].name;
-                inputField.value = '';
-                currentInput = '';
-                showNextImage();
-            } else {
-                alert('すべての画像を学習しました！');
-            }
-        }, 1500); // 赤丸は1.5秒表示
-    }
-     else {
-        resultIndicator.style.backgroundColor = ''; // 赤丸を消す
-        shakeImage(); // 画像をシェイクするアニメーション
-        inputField.value = ''; // 入力欄をクリア
-        currentInput = ''; // 内部データもリセット
-    }
-}
+//         // 0.5秒後に次の画像に切り替え
+//         setTimeout(() => {
+//             resultIndicator.style.display = 'none'; // 赤丸を消す
+//             if (currentImageIndex < images.length) {
+//                 document.querySelector('.image img').src = images[currentImageIndex].src;
+//                 document.querySelector('.image img').alt = images[currentImageIndex].name;
+//                 inputField.value = '';
+//                 currentInput = '';
+//                 showNextImage();
+//             } else {
+//                 alert('すべての画像を学習しました！');
+//             }
+//         }, 1500); // 赤丸は1.5秒表示
+//     }
+//      else {
+//         resultIndicator.style.backgroundColor = ''; // 赤丸を消す
+//         shakeImage(); // 画像をシェイクするアニメーション
+//         inputField.value = ''; // 入力欄をクリア
+//         currentInput = ''; // 内部データもリセット
+//     }
+// }
 
 // 画像をシェイクするアニメーション
 function shakeImage() {
@@ -156,3 +150,96 @@ function shakeImage() {
         imageElement.classList.remove('shake'); // アニメーション後にshakeクラスを削除
     }, 1500); // 1.5秒後にクラスを削除
 }
+
+// document.getElementById('skipBtn').addEventListener('click', function () {
+//     const inputField = document.getElementById('inputField');
+
+//     // 正解のひらがなを表示
+//     inputField.value = images[currentImageIndex].name;
+//     inputField.style.backgroundColor = '#ffffcc';  // 背景色でヒントっぽく
+
+//     // 5秒後に次の画像へ
+//     setTimeout(() => {
+//         inputField.value = '';
+//         inputField.style.backgroundColor = '';  // 背景色を元に戻す
+//         currentInput = '';
+//         answeredImages.push(currentImage.src); // スキップも「学習済み」とみなす
+//         showNextImage();
+//     }, 5000);
+// });
+
+
+let totalQuestions = 0; // 選ばれた問題数
+let answeredCount = 0;  // 現在答えた数（スキップも含む）
+
+function startGame(questionCount) {
+    console.log("ゲーム開始！", questionCount);  // ← ここで動作確認
+    totalQuestions = questionCount;
+    answeredCount = 0;
+    correctCount = 0;
+    answeredImages = [];
+    currentInput = "";
+
+    document.getElementById('correctCounter').textContent = 0;
+    document.getElementById('startScreen').style.display = 'none';
+    document.getElementById('gameContainer').style.display = 'flex';
+
+    showNextImage();
+}
+
+// ゲーム終了処理
+function endGame() {
+    document.getElementById('gameContainer').style.display = 'none';
+    const message = `おわり！ ${correctCount} / ${totalQuestions} 正解でした！`;
+    document.getElementById('resultMessage').textContent = message;
+    document.getElementById('startScreen').style.display = 'flex';
+}
+
+// 回答確認関数の修正（confirmAnswer 内）
+function confirmAnswer() {
+    const inputField = document.getElementById('inputField');
+    const resultIndicator = document.getElementById('resultIndicator');
+
+    if (inputField.value === images[currentImageIndex].name) {
+        correctCount++;
+        document.getElementById("correctCounter").textContent = correctCount;
+        resultIndicator.style.display = 'block';
+        answeredImages.push(currentImage.src);
+
+        setTimeout(() => {
+            resultIndicator.style.display = 'none';
+            inputField.value = '';
+            currentInput = '';
+            answeredCount++;
+            if (answeredCount >= totalQuestions) {
+                endGame();
+            } else {
+                showNextImage();
+            }
+        }, 1500);
+    } else {
+        shakeImage();
+        inputField.value = '';
+        currentInput = '';
+    }
+}
+
+// スキップボタンの処理の修正
+document.getElementById('skipBtn').addEventListener('click', function () {
+    const inputField = document.getElementById('inputField');
+    inputField.value = images[currentImageIndex].name;
+    inputField.style.backgroundColor = '#ffffcc';
+
+    setTimeout(() => {
+        inputField.value = '';
+        inputField.style.backgroundColor = '';
+        currentInput = '';
+        answeredImages.push(currentImage.src);
+        answeredCount++;
+        if (answeredCount >= totalQuestions) {
+            endGame();
+        } else {
+            showNextImage();
+        }
+    }, 5000);
+});
