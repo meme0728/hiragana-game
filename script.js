@@ -101,6 +101,29 @@ function changeToHandakuten() {
     }
 }
 
+// 小文字に変換する関数
+function changeToSmallKana() {
+    const lastChar = currentInput.charAt(currentInput.length - 1);
+    
+    const toSmall = {
+        "や": "ゃ", "ゆ": "ゅ", "よ": "ょ", "つ": "っ"
+    };
+
+    const toLarge = Object.fromEntries(
+        Object.entries(toSmall).map(([large, small]) => [small, large])
+    );
+
+    if (toSmall[lastChar]) {
+        // 大→小変換
+        currentInput = currentInput.slice(0, -1) + toSmall[lastChar];
+    } else if (toLarge[lastChar]) {
+        // 小→大変換
+        currentInput = currentInput.slice(0, -1) + toLarge[lastChar];
+    }
+
+    document.getElementById('inputField').value = currentInput;
+}
+
 
 // // 正解の確認
 // function confirmAnswer() {

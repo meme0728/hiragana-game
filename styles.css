@@ -15,11 +15,12 @@ body {
 }
 
 .input-space {
-    margin-bottom: 20px;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
 #inputField {
-    font-size: 1em;
+    font-size: 2em;
     padding: 10px;
     width: 100%;
     text-align: center;
@@ -70,7 +71,7 @@ body {
     background-color: #4CAF50;  /* 緑色 */
     color: white;
     border-radius: 0.5rem;
-    margin-left: 10px;  /* 「消去」ボタンとの間隔を空ける */
+    margin-left: 10px;
 }
 
 #confirmBtn:hover {
