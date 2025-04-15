@@ -224,6 +224,8 @@ function confirmAnswer() {
     const resultIndicator = document.getElementById('resultIndicator');
 
     if (inputField.value === images[currentImageIndex].name) {
+        document.getElementById('correctSound').play();
+
         correctCount++;
         document.getElementById("correctCounter").textContent = correctCount;
         resultIndicator.style.display = 'block';
